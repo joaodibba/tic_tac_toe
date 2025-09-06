@@ -52,6 +52,11 @@ typedef struct s_game
 	t_player	player1;
 	t_player	player2;
 	t_image		image;
+	int			current_player;
+	int			game_state;
+	int			moves_count;
+	int			restart_timer;
+	bool		show_help;
 }	t_game;
 
 #endif

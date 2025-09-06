@@ -10,7 +10,6 @@
 //     size.x = DisplayWidth(display, screen);
 //     size.y = DisplayHeight(display, screen);
 
-//     printf("Screen Resolution: %d x %d\n", size.x, size.y);
 
 //     XCloseDisplay(display);
 //     return (size);

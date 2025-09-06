@@ -19,6 +19,16 @@
 # define WINDOW_SIZE 750
 # define TEXTURE_SIZE 128
 
+// Game states
+# define GAME_PLAYING 0
+# define GAME_WON 1
+# define GAME_DRAW 2
+# define GAME_MENU 3
+
+// Players
+# define PLAYER_1 1
+# define PLAYER_2 2
+
 # ifdef __APPLE__
 #  define KeyPress 2
 #  define KeyPressMask 1L<<0
@@ -37,6 +47,7 @@
 #  define S_k 1
 #  define A_k 0
 #  define D_k 2
+#  define H_k 4
 #  define LEFT 123
 #  define RIGHT 124
 #  define UP 126
