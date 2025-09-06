@@ -1,10 +1,7 @@
 # source: https://github.com/QuentinThierry/png_to_alpha_xpm
 
 import png
-import numpy as np
 import sys
-
-np.set_printoptions(threshold=np.inf)
 
 def get_list1():
 	list_keys1 = []
@@ -36,25 +33,28 @@ def get_list3(): #804357 size
 def get_colors(pixels):
 	global depth
 	colors_list = []
-	colums = len(pixels)
+	columns = len(pixels)
 	rows = len(pixels[0])
-	for colums in range(colums):
+	
+	for col in range(columns):
 		i = 0
 		if depth == 4:
 			while i < rows:
+				# RGBA format: Red, Green, Blue, Alpha
+				# For XPM, we typically use RGB format (6 chars) not RGBA (8 chars)
 				color = \
-				str(format(pixels[colums][i+3], "02X")) \
-				+ str(format(pixels[colums][i+0], "02X")) \
-				+ str(format(pixels[colums][i+1], "02X")) \
-				+ str(format(pixels[colums][i+2], "02X"))
+				str(format(pixels[col][i+0], "02X")) \
+				+ str(format(pixels[col][i+1], "02X")) \
+				+ str(format(pixels[col][i+2], "02X"))
 				colors_list.append(color)
 				i += depth
 		else:
 			while i < rows:
+				# RGB format: Red, Green, Blue
 				color = \
-				  str(format(pixels[colums][i+0], "02X")) \
-				+ str(format(pixels[colums][i+1], "02X")) \
-				+ str(format(pixels[colums][i+2], "02X"))
+				  str(format(pixels[col][i+0], "02X")) \
+				+ str(format(pixels[col][i+1], "02X")) \
+				+ str(format(pixels[col][i+2], "02X"))
 				colors_list.append(color)
 				i += depth
 			
@@ -116,7 +116,7 @@ def parse_pixels(arg):
 				depth = 4
 			else:
 				depth = 3
-			pixel_array = np.array(list(pixels))
+			pixel_array = list(pixels)
 			if len(arg) == 3:
 				pixels_to_xpm(pixel_array, arg[2])
 			else:
