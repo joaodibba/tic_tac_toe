@@ -1,5 +1,13 @@
 #include "game.h"
 
+/**
+ * * load_file_to_texture
+ * @brief	Loads an XPM image file into a texture structure
+ * @param path	The file path to the XPM image file
+ * @return	A t_texture structure containing the loaded image data
+ * @details	Uses MLX to load XPM files and get image data address.
+ * 		Returns empty texture if loading fails.
+ */
 t_texture	load_file_to_texture(char *path)
 {
 	t_texture	texture;
@@ -13,6 +21,13 @@ t_texture	load_file_to_texture(char *path)
 	return (texture);
 }
 
+/**
+ * * load_textures
+ * @brief	Loads all game textures from XPM files
+ * @details	Loads textures for circles, crosses, empty squares, selections,
+ * 		and background. Includes special variants for winning lines
+ * 		(horizontal, vertical, diagonal).
+ */
 void	load_textures(void)
 {
 	image()->circle = load_file_to_texture("assets/XPM/CIRCLE.xpm");

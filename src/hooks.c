@@ -1,6 +1,14 @@
 #include "game.h"
 
-// for multiplayer mode
+/**
+ * * multiplayer_key_hook
+ * @brief	Handles keyboard input for multiplayer tic-tac-toe game
+ * @param key	The key code of the pressed key
+ * @return	The key code that was processed
+ * @details	Manages player movement, piece placement, help toggle, and game exit.
+ * 		Player 1 uses WASD + SPACE, Player 2 uses arrow keys + ENTER.
+ * 		H key toggles help display, ESC key exits the game.
+ */
 int	multiplayer_key_hook(int key)
 {
 	if (key == ESCAPE)
@@ -13,6 +21,16 @@ int	multiplayer_key_hook(int key)
 	if (key == H_k)
 	{
 		game()->show_help = !game()->show_help;
+		return (key);
+	}
+	
+	// Randomize cursor positions with R key
+	if (key == 15) // R key
+	{
+		player1()->select.x = rand() % 3;
+		player1()->select.y = rand() % 3;
+		player2()->select.x = rand() % 3;
+		player2()->select.y = rand() % 3;
 		return (key);
 	}
 	
@@ -105,6 +123,17 @@ int	multiplayer_key_hook(int key)
 	return (key);
 }
 
+/**
+ * * mouse_hook
+ * @brief	Handles mouse click events for piece placement
+ * @param button	The mouse button that was clicked (LEFT_CLICK, etc.)
+ * @param x	The x coordinate of the mouse click
+ * @param y	The y coordinate of the mouse click
+ * @param param	Unused parameter (required by MLX hook signature)
+ * @return	The button code that was processed
+ * @details	Converts mouse coordinates to grid positions and places pieces
+ * 		for the current player. Also handles game reset when not in playing state.
+ */
 int mouse_hook(int button, int x, int y, void *param)
 {
 	(void)param;
