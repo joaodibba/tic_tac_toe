@@ -24,7 +24,6 @@ void		render_selection(void);
 void		render_help(void);
 void		load_textures(void);
 int			close_window(void);
-void		free_grid(void);
 
 int			mouse_hook(int button, int x, int y, void *param);
 

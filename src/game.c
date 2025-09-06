@@ -45,7 +45,7 @@ void	make_move(int x, int y, int player)
  */
 int	check_win(void)
 {
-	char	**grid = game()->grid;
+	char (*grid)[3] = game()->grid;
 	
 	// Check rows
 	for (int i = 0; i < 3; i++)

@@ -3,35 +3,15 @@
 
 /**
  * * init_grid
- * @brief	Initializes a 3x3 grid for the tic-tac-toe game
- * @return	A pointer to the allocated 2D character array, or NULL on failure
- * @details	Allocates memory for a 3x3 grid and initializes all positions
- * 		to EMPTY ('0'). Returns NULL if memory allocation fails.
+ * @brief	Sets all positions in the static 3x3 grid to EMPTY
+ * @details	Initializes the static 3x3 grid in game()->grid by setting every cell to EMPTY.
  */
-char	**init_grid(void) 
+
+void init_grid(void)
 {
-    char **grid = (char **)malloc(3 * sizeof(char *));
-    if (!grid)
-    {
-        return (NULL);
-    }
-    int i = 0, j = 0;
-    while (i < 3) 
-	{
-        grid[i] = (char *)malloc(3 * sizeof(char));
-        if (!grid[i])
-        {
-            return (NULL);
-        }
-        j = 0;
-        while (j < 3) 
-		{
-            grid[i][j] = '0';
-            j++;
-        }
-        i++;
-    }
-    return (grid);
+	for (int i = 0; i < 3; i++)
+		for (int j = 0; j < 3; j++)
+			game()->grid[i][j] = EMPTY;
 }
 
 /**
@@ -43,13 +23,12 @@ char	**init_grid(void)
  */
 void	init_vars(void)
 {
-	game()->grid = init_grid();
+	init_grid();
 	game()->window_size.x = WINDOW_SIZE;
 	game()->window_size.y = WINDOW_SIZE;
 	game()->mlx = mlx_init();
 	game()->window = mlx_new_window(game()->mlx, game()->window_size.x, game()->window_size.y, "TIC TAC TOE");
 	image()->final_image.img = mlx_new_image(game()->mlx, game()->window_size.y, game()->window_size.x);
-	// game()->screen_size = get_display_size();
 	// Randomize starting player
 	srand(time(NULL));
 	game()->current_player = (rand() % 2) ? PLAYER_1 : PLAYER_2;

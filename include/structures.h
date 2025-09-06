@@ -48,7 +48,7 @@ typedef struct s_game
 	void		*window;
 	t_pos		window_size;
 	t_pos		screen_size;
-	char		**grid;
+	char		grid[3][3];
 	t_player	player1;
 	t_player	player2;
 	t_image		image;
