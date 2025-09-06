@@ -1,7 +1,7 @@
 NAME  	= tic_tac_toe
 OS    	= $(shell uname)
 CC    	= @cc
-FLAGS	= -fsanitize=address -static-libsan -g #-Wall -Wextra -Werror
+FLAGS	= -fsanitize=address -g #-Wall -Wextra -Werror
 INC   	= -I./include -I./libft -I./mlx -I./mlx_macos 
 SRC   	= 	$(wildcard src/*.c) $(wildcard src/render/*.c)
 OBJ   	= $(patsubst src/%.c, obj/%.o, $(SRC))
